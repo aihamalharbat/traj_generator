@@ -16,9 +16,9 @@ float calculateCommand(double t_var){
     return (command_var);
 }
 void TimedCommandCallback(const ros::TimerEvent& e){
-    if(command < command_alt){
-        double t = ros::Time::now().toSec();
-        t = t - start_time;
+    double t = ros::Time::now().toSec();
+    t = t - start_time;
+    if(t <= t_f){
         command = calculateCommand(t);
         ROS_WARN("Here @ %f", command);
     }
@@ -40,8 +40,6 @@ int main(int argc, char** argv) {
 
     std::cin >> dummy;
 
-    start_time = ros::Time::now().toSec();
-
     ros::Timer command_timer_;
     command_timer_ = nh_.createTimer(
       ros::Duration(0.01), TimedCommandCallback, false, true);
@@ -56,6 +54,7 @@ int main(int argc, char** argv) {
     msg.pose.orientation.z = 0;
     msg.pose.orientation.w = 1;
 
+    start_time = ros::Time::now().toSec();
     while (ros::ok())
     {
         ros::spinOnce();
