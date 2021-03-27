@@ -34,6 +34,14 @@ int main(int argc, char** argv) {
     ROS_INFO("Please enter the altitude command:");
     std::cin >> command_alt;
 
+    ROS_INFO("Please enter the trajectory time duration:");
+    std::cin >> t_f;
+    if (t_f <= 0)
+    {
+        t_f = 5;
+    }
+    
+
     ROS_INFO("The altitude command: %f", command_alt);
 
     ROS_WARN("Enter any number to start..");
