@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
     msg.header.frame_id = "map";
     msg.pose.position.x = 0;
-    msg.pose.position.y = 1;
+    msg.pose.position.y = 0;
     msg.pose.orientation.x = 0;
     msg.pose.orientation.y = 0;
     msg.pose.orientation.z = 0;
